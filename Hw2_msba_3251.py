@@ -64,7 +64,7 @@
         "st.title(\"Welcome to my my Homework!\")\n",
         "\n",
         "\n",
-        "df = pd.read_csv("cereal.csv")\n",
+        "df = pd.read_csv(\"cereal.csv\")\n",
         "df.head(2)\n",
         "\n",
         "brands = {\"A\" : \"American Home Food Products\",\n",
