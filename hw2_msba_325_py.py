@@ -76,7 +76,7 @@ st.markdown('The above plot shows that the dataset does not have equal instances
 # 
 # # Visual 2 
 st.header("Different Nutrition Facts Across Brands")
-pivot table to get the mean of each the below nutrition facts across brands
+#pivot table to get the mean of each the below nutrition facts across brands
 nutrition_per_brand=df.pivot_table(values=['Calories','Fiber','Sugars','Vitamins'],index= "Brand", aggfunc=np.mean)
 # # bringing it back to Pd
 nutrition_per_brand = pd.DataFrame(nutrition_per_brand.to_records())
