@@ -45,7 +45,7 @@ df.replace({"type": types}, inplace=True)
 df=df.rename(columns={'type':'Type','rating':'Rating',"sugars":"Sugars","calories":"Calories","fiber":"Fiber","vitamins":"Vitamins","mfr":"Brand"})
  
  
-logistics: changing page icon and setting title
+#logistics: changing page icon and setting title
 st.write("The below dataset sums the rating of different cereal with their nutrition components")
 st.write("These are the first five rows in my data:")
  
