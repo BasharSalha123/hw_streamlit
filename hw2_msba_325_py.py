@@ -8,8 +8,6 @@ Original file is located at
 """
 
 # Commented out IPython magic to ensure Python compatibility.
-%%writefile app.py 
-Importing files
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -57,56 +55,56 @@ st.subheader('Expanded Data')
 st.write(df)
 # 
 # 
-# # page 1:
+# page 1:
 # 
-# st.sidebar.markdown("# Discovery Phase :eye:")
+st.sidebar.markdown("# Discovery Phase :eye:")
 # 
 # 
 # 
-# st.header("Number of Observation per Brand")
+st.header("Number of Observation per Brand")
 # 
-# Q_per_brand = df.groupby(['Brand'])['Brand'].count()
-# Q_per_brand=pd.DataFrame({'Brand':Q_per_brand.index, 'Count':Q_per_brand.values})
+Q_per_brand = df.groupby(['Brand'])['Brand'].count()
+Q_per_brand=pd.DataFrame({'Brand':Q_per_brand.index, 'Count':Q_per_brand.values})
 # 
 # 
 # # Visual number 1 
 # 
-# fig = px.pie(Q_per_brand, values='Count', names='Brand', color='Brand')
-# st.plotly_chart(fig)
-# 
-# st.markdown('The above plot shows that the dataset does not have equal instances from each brand')
+fig = px.pie(Q_per_brand, values='Count', names='Brand', color='Brand')
+st.plotly_chart(fig)
+ 
+st.markdown('The above plot shows that the dataset does not have equal instances from each brand')
 # 
 # # Visual 2 
-# st.header("Different Nutrition Facts Across Brands")
-# # pivot table to get the mean of each the below nutrition facts across brands
-# nutrition_per_brand=df.pivot_table(values=['Calories','Fiber','Sugars','Vitamins'],index= "Brand", aggfunc=np.mean)
+st.header("Different Nutrition Facts Across Brands")
+pivot table to get the mean of each the below nutrition facts across brands
+nutrition_per_brand=df.pivot_table(values=['Calories','Fiber','Sugars','Vitamins'],index= "Brand", aggfunc=np.mean)
 # # bringing it back to Pd
-# nutrition_per_brand = pd.DataFrame(nutrition_per_brand.to_records())
+nutrition_per_brand = pd.DataFrame(nutrition_per_brand.to_records())
 # 
 # 
 # 
 # # The used code only takes input as lists, thus I rearranged the data to lists
-# brands=nutrition_per_brand.Brand.tolist()
-# Calories_mn=nutrition_per_brand.Calories.tolist()
-# Fiber_mn=nutrition_per_brand.Fiber.tolist()
-# Sugars_mn=nutrition_per_brand.Sugars.tolist()
-# Vitamins_mn=nutrition_per_brand.Vitamins.tolist()
+brands=nutrition_per_brand.Brand.tolist()
+Calories_mn=nutrition_per_brand.Calories.tolist()
+Fiber_mn=nutrition_per_brand.Fiber.tolist()
+Sugars_mn=nutrition_per_brand.Sugars.tolist()
+Vitamins_mn=nutrition_per_brand.Vitamins.tolist()
 # 
 # # Multiple subplot code
-# specs = [[{'type':'domain'}, {'type':'domain'}], [{'type':'domain'}, {'type':'domain'}]]
-# fig = make_subplots(rows=2, cols=2, specs=specs)
+specs = [[{'type':'domain'}, {'type':'domain'}], [{'type':'domain'}, {'type':'domain'}]]
+fig = make_subplots(rows=2, cols=2, specs=specs)
 # # Each line is a piechart
-# fig.add_trace(go.Pie(labels=brands, values=Calories_mn, title="Calories Across Brands"), 1, 1)
-# fig.add_trace(go.Pie(labels=brands, values= Fiber_mn, title='Fiber Across Brands'), 1, 2)
-# fig.add_trace(go.Pie(labels=brands, values= Sugars_mn, title='Sugars Across Brands'), 2, 1)
-# fig.add_trace(go.Pie(labels=brands, values= Vitamins_mn, title='Vitamins Across Brands'), 2, 2)
-# # Adding a title and deleting the percentages for clarity 
-# fig.update(layout_showlegend=True)
-# fig.update_layout(margin=dict(l=20, r=20, t=20, b=20))
+fig.add_trace(go.Pie(labels=brands, values=Calories_mn, title="Calories Across Brands"), 1, 1)
+fig.add_trace(go.Pie(labels=brands, values= Fiber_mn, title='Fiber Across Brands'), 1, 2)
+fig.add_trace(go.Pie(labels=brands, values= Sugars_mn, title='Sugars Across Brands'), 2, 1)
+fig.add_trace(go.Pie(labels=brands, values= Vitamins_mn, title='Vitamins Across Brands'), 2, 2)
+# Adding a title and deleting the percentages for clarity 
+fig.update(layout_showlegend=True)
+fig.update_layout(margin=dict(l=20, r=20, t=20, b=20))
 # 
-# fig.update_traces(textinfo='none')
-# fig = go.Figure(fig)
-# st.plotly_chart(fig)
+fig.update_traces(textinfo='none')
+fig = go.Figure(fig)
+st.plotly_chart(fig)
 # 
 # st.markdown('The above plot shows the average nutrients across brands')
 # 
