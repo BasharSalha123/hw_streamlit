@@ -27,7 +27,7 @@ Original file is located at
 # st.title("Welcome to my my Homework!")
 # 
 # 
-# df = pd.read_csv("/content/drive/MyDrive/MSBA325/cereal.csv")
+# df = pd.read_csv("cereal.csv")
 # df.head(2)
 # 
 # brands = {"A" : "American Home Food Products",
