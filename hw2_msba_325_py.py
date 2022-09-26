@@ -148,7 +148,7 @@ st.header('Ranking and Fibers Across Brands')
 fig = px.bar(rating_per_brand, x='Brand', y='Rating',hover_data=['Calories', 'Fiber'], color='Fiber',
 #              labels={'mfr':'Brand'})
 fig.update_layout(paper_bgcolor='rgba(0,0,0,0)',plot_bgcolor='rgba(0,0,0,0)',margin=dict(l=40, r=40, t=40, b=40))
-st.plotly_chart(fig)
+             st.plotly_chart(fig)
 # 
 st.markdown('The above plot shows that brands that have the most fibers have higher rating')
 # 
