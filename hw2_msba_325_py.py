@@ -8,54 +8,53 @@ Original file is located at
 """
 
 # Commented out IPython magic to ensure Python compatibility.
-# %%writefile app.py
-# 
-# # Importing files
-# import streamlit as st
-# import pandas as pd
-# import numpy as np
-# import plotly.express as px
-# import plotly.figure_factory as ff
-# from plotly.subplots import make_subplots
-# import plotly.graph_objects as go
-# 
-# st.set_page_config(
-#   page_title= 'Why best Cereal',
-#   page_icon= ':smiley:',
-#   initial_sidebar_state= 'expanded')
-#   
-# st.title("Welcome to my my Homework!")
-# 
-# 
-# df = pd.read_csv("cereal.csv")
-# df.head(2)
-# 
-# brands = {"A" : "American Home Food Products",
-# "G" : "General Mills",
-# "K" : "Kelloggs",
-# "N" : "Nabisco",
-# "P" : "Post",
-# "Q" : "Quaker Oats",
-# "R" : "Ralston Purina"
-# }
-# df.replace({"mfr": brands}, inplace=True)
-# 
-# types = {"C" : "Cold",
-#           "H" : "Hot"
-# }
-# df.replace({"type": types}, inplace=True)
-# 
-# df=df.rename(columns={'type':'Type','rating':'Rating',"sugars":"Sugars","calories":"Calories","fiber":"Fiber","vitamins":"Vitamins","mfr":"Brand"})
-# 
-# 
-# # logistics: changing page icon and setting title
-# st.write("The below dataset sums the rating of different cereal with their nutrition components")
-# st.write("These are the first five rows in my data:")
-# 
-# #Reading the data
-# if st.checkbox('Click for Expanded Data'):
-#     st.subheader('Expanded Data')
-#     st.write(df)
+%%writefile app.py 
+Importing files
+import streamlit as st
+import pandas as pd
+import numpy as np
+import plotly.express as px
+import plotly.figure_factory as ff
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
+ 
+st.set_page_config(
+page_title= 'Why best Cereal',
+page_icon= ':smiley:',
+initial_sidebar_state= 'expanded')
+   
+st.title("Welcome to my my Homework!")
+ 
+ 
+df = pd.read_csv("cereal.csv")
+df.head(2)
+ 
+brands = {"A" : "American Home Food Products",
+"G" : "General Mills",
+"K" : "Kelloggs",
+"N" : "Nabisco",
+"P" : "Post",
+"Q" : "Quaker Oats",
+"R" : "Ralston Purina"
+ }
+df.replace({"mfr": brands}, inplace=True)
+ 
+types = {"C" : "Cold",
+           "H" : "Hot"
+ }
+df.replace({"type": types}, inplace=True)
+ 
+df=df.rename(columns={'type':'Type','rating':'Rating',"sugars":"Sugars","calories":"Calories","fiber":"Fiber","vitamins":"Vitamins","mfr":"Brand"})
+ 
+ 
+logistics: changing page icon and setting title
+st.write("The below dataset sums the rating of different cereal with their nutrition components")
+st.write("These are the first five rows in my data:")
+ 
+Reading the data
+if st.checkbox('Click for Expanded Data'):
+st.subheader('Expanded Data')
+st.write(df)
 # 
 # 
 # # page 1:
