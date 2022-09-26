@@ -51,8 +51,8 @@ st.write("These are the first five rows in my data:")
  
 #Reading the data
 if st.checkbox('Click for Expanded Data'):
-st.subheader('Expanded Data')
-st.write(df)
+    st.subheader('Expanded Data')
+    st.write(df)
 # 
 # 
 # page 1:
