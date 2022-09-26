@@ -49,7 +49,7 @@ df=df.rename(columns={'type':'Type','rating':'Rating',"sugars":"Sugars","calorie
 st.write("The below dataset sums the rating of different cereal with their nutrition components")
 st.write("These are the first five rows in my data:")
  
-Reading the data
+#Reading the data
 if st.checkbox('Click for Expanded Data'):
 st.subheader('Expanded Data')
 st.write(df)
