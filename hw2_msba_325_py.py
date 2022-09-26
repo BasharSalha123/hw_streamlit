@@ -106,7 +106,7 @@ fig.update_traces(textinfo='none')
 fig = go.Figure(fig)
 st.plotly_chart(fig)
 # 
-# st.markdown('The above plot shows the average nutrients across brands')
+st.markdown('The above plot shows the average nutrients across brands')
 # 
 # 
 # 
@@ -114,83 +114,81 @@ st.plotly_chart(fig)
 # 
 # 
 # 
-# st.markdown("# Better Cereal to Better Business :money_mouth_face: ")
-# st.sidebar.markdown("# Business Insights :wink: ")
+st.markdown("# Better Cereal to Better Business :money_mouth_face: ")
+st.sidebar.markdown("# Business Insights :wink: ")
 # 
 # 
-# st.header("Ratings Across Different Types of Cereals")
-# fig = px.box(df,x='Type' ,y="Rating",title='Ratings Across Different Types of Cereals')
-# fig.update_layout(paper_bgcolor='rgba(0,0,0,0)',
-#     plot_bgcolor='rgba(0,0,0,0)',margin=dict(l=30, r=30, t=30, b=30))
-# fig.show()
-# st.plotly_chart(fig)
+st.header("Ratings Across Different Types of Cereals")
+fig = px.box(df,x='Type' ,y="Rating",title='Ratings Across Different Types of Cereals')
+fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',margin=dict(l=30, r=30, t=30, b=30))
+fig.show()
+st.plotly_chart(fig)
 # 
 # 
-# st.markdown('The above box-plot shows that on average people like hot cereal more than cold ones')
+st.markdown('The above box-plot shows that on average people like hot cereal more than cold ones')
 # 
 # 
 # # Figure 4
-# st.header("Ranking and Calories Across Brands")
+st.header("Ranking and Calories Across Brands")
 # # pivot table to get the mean of rating, calories and fiber across different brands
-# rating_per_brand=df.pivot_table(values=["Rating",'Calories','Fiber'],index= "Brand", aggfunc=np.mean)
-# rating_per_brand = pd.DataFrame(rating_per_brand.to_records())
+rating_per_brand=df.pivot_table(values=["Rating",'Calories','Fiber'],index= "Brand", aggfunc=np.mean)
+rating_per_brand = pd.DataFrame(rating_per_brand.to_records())
 # 
-# fig = px.bar(rating_per_brand, x='Brand', y='Rating',hover_data=['Calories', 'Fiber'], color='Calories',labels={'mfr':'Brand'},height=500)
-# fig.update_layout(paper_bgcolor='rgba(0,0,0,0)',plot_bgcolor='rgba(0,0,0,0)',margin=dict(l=40, r=40, t=40, b=40))
-# st.plotly_chart(fig)
+fig = px.bar(rating_per_brand, x='Brand', y='Rating',hover_data=['Calories', 'Fiber'], color='Calories',labels={'mfr':'Brand'},height=500)
+fig.update_layout(paper_bgcolor='rgba(0,0,0,0)',plot_bgcolor='rgba(0,0,0,0)',margin=dict(l=40, r=40, t=40, b=40))
+st.plotly_chart(fig)
 # 
-# st.markdown('The above plot shows that brands that have the most calories have lower rating')
+st.markdown('The above plot shows that brands that have the most calories have lower rating')
 # 
 # 
 # # figure 5:
 # 
 # 
-# st.header('Ranking and Fibers Across Brands')
-# fig = px.bar(rating_per_brand, x='Brand', y='Rating',hover_data=['Calories', 'Fiber'], color='Fiber',
+st.header('Ranking and Fibers Across Brands')
+fig = px.bar(rating_per_brand, x='Brand', y='Rating',hover_data=['Calories', 'Fiber'], color='Fiber',
 #              labels={'mfr':'Brand'})
-# fig.update_layout(paper_bgcolor='rgba(0,0,0,0)',plot_bgcolor='rgba(0,0,0,0)',margin=dict(l=40, r=40, t=40, b=40))
-# st.plotly_chart(fig)
+fig.update_layout(paper_bgcolor='rgba(0,0,0,0)',plot_bgcolor='rgba(0,0,0,0)',margin=dict(l=40, r=40, t=40, b=40))
+st.plotly_chart(fig)
 # 
-# st.markdown('The above plot shows that brands that have the most fibers have higher rating')
-# 
-# 
+st.markdown('The above plot shows that brands that have the most fibers have higher rating')
 # 
 # 
-# st.header('Correlation Heatmap for nutrients and Rankings')
+# 
+# 
+st.header('Correlation Heatmap for nutrients and Rankings')
 # #Creates the Correlation Matrix
-# corr_matrix=df.corr()
+corr_matrix=df.corr()
 # ### takes out only one side of the matrix to make it visually appealing 
-# mask=np.triu(np.ones_like(corr_matrix,dtype= bool))
-# rLT = corr_matrix.mask(mask)
+mask=np.triu(np.ones_like(corr_matrix,dtype= bool))
+ rLT = corr_matrix.mask(mask)
+ 
+# 
+heat = go.Heatmap(
+     z = rLT,
+     x = rLT.columns.values,
+     y = rLT.columns.values,
+     zmin = - 0.25, # Sets the lower bound of the color domain
+     zmax = 1,
+     xgap = 1, # Sets the horizontal gap (in pixels) between bricks
+     ygap = 1,
+     colorscale = px.colors.diverging.RdBu)
+ 
+ 
+ 
+  
+ layout = go.Layout( 
+     width=800, 
+     height=600,
+     xaxis_showgrid=False,
+     yaxis_showgrid=False,
+     yaxis_autorange='reversed'
+ )
+ 
+ fig=go.Figure(data=[heat], layout=layout)
+ st.plotly_chart(fig)
 # 
 # 
-# heat = go.Heatmap(
-#     z = rLT,
-#     x = rLT.columns.values,
-#     y = rLT.columns.values,
-#     zmin = - 0.25, # Sets the lower bound of the color domain
-#     zmax = 1,
-#     xgap = 1, # Sets the horizontal gap (in pixels) between bricks
-#     ygap = 1,
-#     colorscale = px.colors.diverging.RdBu)
-# 
-# 
-# 
-# 
-# 
-# layout = go.Layout( 
-#     width=800, 
-#     height=600,
-#     xaxis_showgrid=False,
-#     yaxis_showgrid=False,
-#     yaxis_autorange='reversed'
-# )
-# 
-# fig=go.Figure(data=[heat], layout=layout)
-# st.plotly_chart(fig)
-# 
-# 
-# st.markdown('The above Correlation Matrix is very insightful. We can see that calories and brands hurt the rating. However, fiber and protein are boost ratings up')
+ st.markdown('The above Correlation Matrix is very insightful. We can see that calories and brands hurt the rating. However, fiber and protein are boost ratings up')
 # 
 # 
 # # Setting a sidebar:
